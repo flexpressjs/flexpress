@@ -1,0 +1,7 @@
+{
+    "name": "flexpress",
+    "license": "MIT",
+    "description": "Combine the simplicity of Express.js with the features of a full-stack framework",
+    "version": "0.0.1-dev",
+    "bin": "flexpress"
+}
