@@ -1,3 +1,29 @@
 #!/usr/bin/env node
 
-console.log('Flexpress')
+require('pretty-error').start();
+
+const Flexpress = require('./dist/Flexpress').Flexpress;
+
+const client = new Flexpress();
+
+const http = require('http');
+const fs = require('fs-extra');
+const chalk = require('chalk');
+const process = require('process');
+const write = console.log;
+
+const packageJsonPath = client.getPackagePath();
+
+const packageJson = require(packageJsonPath);
+
+const localDir = require('os').homedir()+'/.flexpress';
+
+write(chalk.yellow('Fetching Flexpress recipes ...'));
+fs.ensureDirSync(localDir);
+
+const file = fs.createWriteStream(localDir+'/recipes.zip');
+const request = http.get('http://github.com/flexpressjs/recipes/archive/master.zip', (res) => res.pipe(file));
+
+file.on('finish', () => {
+    file.close();
+});

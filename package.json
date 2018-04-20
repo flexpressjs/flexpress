@@ -1,7 +1,50 @@
 {
     "name": "flexpress",
     "license": "MIT",
-    "description": "Combine the simplicity of Express.js with the features of a full-stack framework",
+    "description": "An incremental Node.js framework to combine the simplicity of Express.js with the features of a full-stack framework",
     "version": "0.0.1-dev",
-    "bin": "flexpress"
+    "bin": "flexpress",
+    "scripts": {
+        "build": "tsc",
+        "watch": "tsc -w",
+        "tslint": "tslint -c tslint.json -p tsconfig.json",
+        "test": "jest --forceExit"
+    },
+    "jest": {
+        "globals": {
+            "ts-jest": {
+                "tsConfigFile": "tsconfig.json"
+            }
+        },
+        "moduleFileExtensions": [
+            "ts",
+            "js"
+        ],
+        "transform": {
+            "^.+\\.(ts|tsx)$": "./node_modules/ts-jest/preprocessor.js"
+        },
+        "testMatch": [
+            "**/tests/**/*.test.(ts|js)"
+        ],
+        "testEnvironment": "node"
+    },
+    "dependencies": {
+        "adm-zip": "^0.4.7",
+        "axios": "^0.18.0",
+        "chalk": "^2.4.0",
+        "fs-extra": "^5.0.0",
+        "pkg-up": "^2.0.0",
+        "pretty-error": "^2.1.1"
+    },
+    "devDependencies": {
+        "@types/adm-zip": "^0.4.31",
+        "@types/axios": "^0.14.0",
+        "@types/fs-extra": "^5.0.2",
+        "@types/jest": "^22.2.3",
+        "@types/node": "^9.6.6",
+        "jest": "^22.4.3",
+        "ts-jest": "^22.4.4",
+        "tslint": "^5.9.1",
+        "typescript": "^2.8.3"
+    }
 }
