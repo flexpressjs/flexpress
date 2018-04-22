@@ -12,6 +12,6 @@ export class FlexpressLockManager {
     }
 
     public persist(filename: string, lock: ProjectLock): void {
-        fs.writeJSON(filename, lock);
+        fs.writeJSON(filename, lock.installed);
     }
 }

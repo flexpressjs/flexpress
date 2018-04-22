@@ -17,7 +17,7 @@ const projectLockBuilder = new ChainProjectLockBuilder([new YarnProjectLockBuild
 const flexpressLockManager = new FlexpressLockManager();
 const apiClient = new ApiClient();
 const recipesUpdater = new RecipesUpdater(apiClient, cachePath, logger);
-const recipesApplier = new RecipesApplier(cachePath);
+const recipesApplier = new RecipesApplier(cachePath, logger);
 
 export const run = async () => {
     logger.info('Reading your projects dependencies');
@@ -32,41 +32,19 @@ export const run = async () => {
     const toApply = recipesApplier.findRecipesToApply(resolvedRecipes, projectLock, flexpressLock);
 
     if (toApply.length === 0) {
-        logger.success('Nothing to configure');
+        logger.success('Flexpress has nothing to configure');
         return;
     }
 
     logger.success('Flexpress operations: '+toApply.length+' recipe'+(toApply.length > 1 ? 's' : ''));
+    const postInstallOutput = recipesApplier.applyRecipes(project, toApply);
 
-    toApply.forEach(recipe => {
-        logger.debug('  - Configuring '+recipe.dependency+' (>= '+recipe.version+') from recipe '+recipe.hash);
-        recipesApplier.applyRecipe(project, recipe);
-    });
+    flexpressLockManager.persist(project.flexpressLockPath, projectLock);
+
+    logger.success('Some files may have been created or updated to configure your new packages');
+    logger.success('Please review, edit and commit them: these files are yours.\n');
+
+    if (postInstallOutput) {
+        logger.info(postInstallOutput);
+    }
 };
-
-/*
-
-    const client = new Flexpress();
-
-    const http = require('http');
-    const fs = require('fs-extra');
-    const chalk = require('chalk');
-    const process = require('process');
-    const write = console.log;
-
-    const packageJsonPath = client.getPackagePath();
-
-    const packageJson = require(packageJsonPath);
-
-    const localDir = require('os').homedir()+'/.flexpress';
-
-    write(chalk.yellow('Fetching Flexpress recipes ...'));
-    fs.ensureDirSync(localDir);
-
-    const file = fs.createWriteStream(localDir+'/recipes.zip');
-    const request = http.get('http://github.com/flexpressjs/recipes/archive/master.zip', (res) => res.pipe(file));
-
-    file.on('finish', () => {
-        file.close();
-    });
- */

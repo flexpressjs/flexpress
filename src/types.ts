@@ -11,7 +11,6 @@ export interface ResolvedRecipe {
 }
 
 export interface Manifest {
-    module?: string,
     copy?: { [recipePath: string]: string },
     gitignore?: string[],
     scripts?: { [name: string]: string },

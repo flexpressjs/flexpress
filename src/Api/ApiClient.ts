@@ -4,7 +4,7 @@ import axios from 'axios';
 export class ApiClient {
     public resolveRecipes(installed: Dependencies): Promise<ResolvedRecipe[]> {
         return new Promise((resolve, reject) => {
-            axios.post('http://127.0.0.1:8000/resolve', installed)
+            axios.post('https://flexpress.titouangalopin.com/resolve', installed)
                 .then((response) => resolve(response.data))
                 .catch(reject)
         });
@@ -12,7 +12,7 @@ export class ApiClient {
 
     public downloadArchive(resolvedRecipe: ResolvedRecipe): Promise<string> {
         return new Promise((resolve, reject) => {
-            axios.get('http://127.0.0.1:8000/archives/'+resolvedRecipe.archive, { responseType: 'arraybuffer' })
+            axios.get('https://flexpress.titouangalopin.com//archives/'+resolvedRecipe.archive, { responseType: 'arraybuffer' })
                 .then((response) => resolve(response.data))
                 .catch(reject)
         });
