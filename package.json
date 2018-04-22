@@ -29,6 +29,7 @@
         "testEnvironment": "node"
     },
     "dependencies": {
+        "@yarnpkg/lockfile": "^1.0.0",
         "adm-zip": "^0.4.7",
         "axios": "^0.18.0",
         "chalk": "^2.4.0",
@@ -38,7 +39,6 @@
     },
     "devDependencies": {
         "@types/adm-zip": "^0.4.31",
-        "@types/axios": "^0.14.0",
         "@types/fs-extra": "^5.0.2",
         "@types/jest": "^22.2.3",
         "@types/node": "^9.6.6",
