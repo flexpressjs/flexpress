@@ -8,10 +8,10 @@ export class FlexpressLockManager {
             return new FlexpressLock(filename, {});
         }
 
-        return new FlexpressLock(filename, require(filename));
+        return new FlexpressLock(filename, fs.readJSONSync(filename));
     }
 
     public persist(filename: string, lock: ProjectLock): void {
-        fs.writeJSON(filename, lock.installed);
+        fs.writeJSONSync(filename, lock.installed);
     }
 }

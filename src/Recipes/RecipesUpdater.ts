@@ -25,8 +25,9 @@ export class RecipesUpdater {
         recipes.forEach(recipe => {
             const recipeCacheDir = this.cachePath+'/'+recipe.dependency+'/'+recipe.version;
             const recipeArchivePath = recipeCacheDir+'/archive.zip';
+            const hashFilePath = recipeCacheDir+'/hash';
 
-            if (fs.existsSync(recipeArchivePath)) {
+            if (fs.existsSync(hashFilePath) && fs.readFileSync(hashFilePath, { encoding: 'utf8' }) === recipe.hash) {
                 return;
             }
 
@@ -37,6 +38,7 @@ export class RecipesUpdater {
                     .then((content) => {
                         fs.ensureDirSync(recipeCacheDir);
                         fs.writeFileSync(recipeArchivePath, content);
+                        fs.writeFileSync(hashFilePath, recipe.hash);
 
                         const zip = new AdmZip(recipeArchivePath);
                         zip.extractAllTo(recipeCacheDir);
