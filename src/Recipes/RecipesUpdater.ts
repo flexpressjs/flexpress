@@ -33,17 +33,19 @@ export class RecipesUpdater {
 
             count++;
 
-            queries.push(new Promise<void>((resolve, reject) => {
+            queries.push(new Promise<void>(resolve => {
                 this.apiClient.downloadArchive(recipe)
-                    .then((content) => {
+                    .then(content => {
                         fs.ensureDirSync(recipeCacheDir);
                         fs.writeFileSync(recipeArchivePath, content);
                         fs.writeFileSync(hashFilePath, recipe.hash);
 
                         const zip = new AdmZip(recipeArchivePath);
-                        zip.extractAllTo(recipeCacheDir);
+                        zip.extractAllTo(recipeCacheDir, true);
+
+                        resolve();
                     })
-                    .catch((err) => {
+                    .catch(err => {
                         throw new Error('Recipe '+recipe.archive+' could not be downloaded. (error: '+err+')');
                     })
             }));

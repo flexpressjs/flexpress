@@ -26,7 +26,7 @@ const apiClient = new ApiClient_1.ApiClient();
 const recipesUpdater = new RecipesUpdater_1.RecipesUpdater(apiClient, cachePath, logger);
 const recipesApplier = new RecipesApplier_1.RecipesApplier(cachePath, logger);
 exports.run = () => __awaiter(this, void 0, void 0, function* () {
-    logger.info('Reading your projects dependencies');
+    logger.info('\n\nReading your projects dependencies');
     const project = ProjectBuilder_1.ProjectBuilder.createProjectFromStructure();
     const projectLock = projectLockBuilder.create(project.projectLockPath);
     const flexpressLock = flexpressLockManager.create(project.flexpressLockPath);
@@ -41,7 +41,7 @@ exports.run = () => __awaiter(this, void 0, void 0, function* () {
     logger.success('Flexpress operations: ' + toApply.length + ' recipe' + (toApply.length > 1 ? 's' : ''));
     const postInstallOutput = recipesApplier.applyRecipes(project, toApply);
     flexpressLockManager.persist(project.flexpressLockPath, projectLock);
-    logger.success('Some files may have been created or updated to configure your new packages');
+    logger.success('\nSome files may have been created or updated to configure your new packages');
     logger.success('Please review, edit and commit them: these files are yours.\n');
     if (postInstallOutput) {
         logger.info(postInstallOutput);
