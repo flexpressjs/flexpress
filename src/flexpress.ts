@@ -25,7 +25,7 @@ export const run = async () => {
     const projectLock = projectLockBuilder.create(project.projectLockPath);
     const flexpressLock = flexpressLockManager.create(project.flexpressLockPath);
 
-    logger.info('Updating recipes cache');
+    logger.info('Resolving recipes');
     const resolvedRecipes = await apiClient.resolveRecipes(projectLock.installed);
     await recipesUpdater.warmUpCache(resolvedRecipes);
 
