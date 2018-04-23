@@ -1,1 +1,0 @@
-{"version":3,"file":"ProjectRootFinder.js","sourceRoot":"","sources":["../../src/Project/ProjectRootFinder.ts"],"names":[],"mappings":";;AAAA;IACW,MAAM,CAAC,eAAe;QACzB,MAAM,eAAe,GAAG,OAAO,CAAC,QAAQ,CAAC,CAAC,IAAI,EAAE,CAAC;QAEjD,IAAI,CAAC,eAAe,EAAE;YAClB,MAAM,IAAI,KAAK,CAAC,sGAAsG,CAAC,CAAC;SAC3H;QAED,OAAO,eAAe,CAAC;IAC3B,CAAC;CACJ;AAVD,8CAUC"}
