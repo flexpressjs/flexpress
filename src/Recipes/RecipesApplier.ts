@@ -48,8 +48,8 @@ export class RecipesApplier {
                     const to = project.rootPath+'/'+manifest.copy[from];
                     from = recipeCacheDir+'/'+from;
 
-                    //fs.ensureDirSync(path.dirname(to));
-                    //fs.copyFileSync(from, to);
+                    fs.ensureDirSync(path.dirname(to));
+                    fs.copyFileSync(from, to);
                 }
             }
 

@@ -2,7 +2,7 @@
     "name": "flexpress",
     "license": "MIT",
     "description": "An incremental Node.js framework to combine the simplicity of Express.js with the features of a full-stack framework",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "bin": "flexpress",
     "scripts": {
         "build": "tsc",

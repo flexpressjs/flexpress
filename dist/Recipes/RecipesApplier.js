@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs-extra");
+const path = require("path");
 class RecipesApplier {
     constructor(cachePath, logger) {
         this.cachePath = cachePath;
@@ -32,8 +33,8 @@ class RecipesApplier {
                 for (let from in manifest.copy) {
                     const to = project.rootPath + '/' + manifest.copy[from];
                     from = recipeCacheDir + '/' + from;
-                    //fs.ensureDirSync(path.dirname(to));
-                    //fs.copyFileSync(from, to);
+                    fs.ensureDirSync(path.dirname(to));
+                    fs.copyFileSync(from, to);
                 }
             }
             // Create/update gitignore
