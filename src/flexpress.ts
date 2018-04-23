@@ -41,7 +41,7 @@ export const run = async () => {
 
     flexpressLockManager.persist(project.flexpressLockPath, projectLock);
 
-    logger.success('\nSome files may have been created or updated to configure your new packages');
+    logger.success('\nSome files may have been created or updated to configure your new packages.');
     logger.success('Please review, edit and commit them: these files are yours.\n');
 
     if (postInstallOutput) {

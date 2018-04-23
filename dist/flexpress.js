@@ -41,7 +41,7 @@ exports.run = () => __awaiter(this, void 0, void 0, function* () {
     logger.success('Flexpress operations: ' + toApply.length + ' recipe' + (toApply.length > 1 ? 's' : ''));
     const postInstallOutput = recipesApplier.applyRecipes(project, toApply);
     flexpressLockManager.persist(project.flexpressLockPath, projectLock);
-    logger.success('\nSome files may have been created or updated to configure your new packages');
+    logger.success('\nSome files may have been created or updated to configure your new packages.');
     logger.success('Please review, edit and commit them: these files are yours.\n');
     if (postInstallOutput) {
         logger.info(postInstallOutput);
