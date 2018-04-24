@@ -6,7 +6,8 @@ The main reason for that is that it actually consists in a single package.json f
 
 We like to call Flexpress an incremental framework: it starts from zero and grows with your needs.
 
-Trying it is the simplest way to understand it:
+Trying it is the simplest way to understand it
+(Flexpress needs Yarn, [see the installation doc](https://yarnpkg.com/en/docs/install)):
 
 ```
 $ mkdir myproject && cd myproject
