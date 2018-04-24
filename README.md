@@ -10,9 +10,12 @@ Trying it is the simplest way to understand it
 (Flexpress needs Yarn, [see the installation doc](https://yarnpkg.com/en/docs/install)):
 
 ```
+# Creating a project is as simple as downloading a package.json file
 $ mkdir myproject && cd myproject
 $ curl -O https://raw.githubusercontent.com/flexpressjs/skeleton/master/package.json
-$ yarn # Yarn is required as npm is not working with Flexpress
+
+# Install the dependencies using Yarn (npm is not working with Flexpress)
+$ yarn
 
 yarn install v1.5.1
 info No lockfile found.
